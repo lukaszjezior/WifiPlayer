@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView textResponse;
     EditText editTextAddress, editTextPort;
-    Button startButton, pauseButton, stopButton;
+    Button startButton, pauseButton, stopButton, forwardButton, reverseButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +32,15 @@ public class MainActivity extends AppCompatActivity {
         startButton = (Button) findViewById(R.id.startButton);
         pauseButton = (Button) findViewById(R.id.pauseButton);
         stopButton = (Button) findViewById(R.id.stopButton);
+        forwardButton = (Button) findViewById(R.id.forwardButton);
+        reverseButton = (Button) findViewById(R.id.reverseButton);
         textResponse = (TextView) findViewById(R.id.response);
 
         startButton.setOnClickListener(startButtonOnClickListener);
         pauseButton.setOnClickListener(pauseButtonOnClickListener);
         stopButton.setOnClickListener(stopButtonOnClickListener);
+        forwardButton.setOnClickListener(forwardButtonOnClickListener);
+        reverseButton.setOnClickListener(reverseButtonOnClickListener);
     }
 
     OnClickListener startButtonOnClickListener = new OnClickListener() {
@@ -60,6 +64,22 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View arg0) {
             sendMessage("STOP");
+        }
+    };
+
+    OnClickListener forwardButtonOnClickListener = new OnClickListener() {
+
+        @Override
+        public void onClick(View arg0) {
+            sendMessage("FORWARD");
+        }
+    };
+
+    OnClickListener reverseButtonOnClickListener = new OnClickListener() {
+
+        @Override
+        public void onClick(View arg0) {
+            sendMessage("REVERSE");
         }
     };
 

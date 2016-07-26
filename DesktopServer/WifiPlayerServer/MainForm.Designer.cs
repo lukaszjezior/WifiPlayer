@@ -1,6 +1,6 @@
 ﻿namespace WifiPlayerServer
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
+            this.songProgressBar = new System.Windows.Forms.ProgressBar();
+            this.currentTimeLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -40,13 +42,32 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
             // 
-            // Form1
+            // songProgressBar
+            // 
+            this.songProgressBar.Location = new System.Drawing.Point(168, 25);
+            this.songProgressBar.Name = "songProgressBar";
+            this.songProgressBar.Size = new System.Drawing.Size(329, 40);
+            this.songProgressBar.TabIndex = 1;
+            this.songProgressBar.Tag = "";
+            // 
+            // currentTimeLabel
+            // 
+            this.currentTimeLabel.AutoSize = true;
+            this.currentTimeLabel.Location = new System.Drawing.Point(134, 38);
+            this.currentTimeLabel.Name = "currentTimeLabel";
+            this.currentTimeLabel.Size = new System.Drawing.Size(28, 13);
+            this.currentTimeLabel.TabIndex = 2;
+            this.currentTimeLabel.Text = "0:00";
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(568, 254);
+            this.Controls.Add(this.currentTimeLabel);
+            this.Controls.Add(this.songProgressBar);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -56,6 +77,8 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ProgressBar songProgressBar;
+        private System.Windows.Forms.Label currentTimeLabel;
 
     }
 }

@@ -14,15 +14,18 @@ using WifiPlayerServer.Player;
 
 namespace WifiPlayerServer
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         ConnectionService connectionService = new ConnectionService();
         AudioPlayer audioPlayer = new AudioPlayer();
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             runService();
+            songProgressBar.Minimum = 0;
+            songProgressBar.Maximum = audioPlayer.getFullSongTimeInSeconds();
+
             Program.MESSAGE_HUB.Subscribe<BasicMessage>((basicMessage) => {
                 if (basicMessage.Content.Equals("START"))
                 {
@@ -36,12 +39,18 @@ namespace WifiPlayerServer
                 {
                     audioPlayer.Stop();
                 }
+                else if (basicMessage.Content.Equals("FORWARD"))
+                {
+                    audioPlayer.Forward();
+                }
+                else if (basicMessage.Content.Equals("REVERSE"))
+                {
+                    audioPlayer.Reverse();
+                }
                 String test = basicMessage.Content;
                 label1.Text = test;
             }, new ControlInvokeTinyMessageProxy(this));
         }
-
-        
 
         void runService()
         {

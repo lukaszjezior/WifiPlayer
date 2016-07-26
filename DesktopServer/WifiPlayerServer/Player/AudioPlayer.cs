@@ -21,7 +21,7 @@ namespace WifiPlayerServer.Player
         private void initializeAudioInterface()
         {
             waveOutDevice = new WaveOut();
-            audioFileReader = new AudioFileReader("G:\\06 - Save Our Love.flac");
+            audioFileReader = new AudioFileReader("G:\\15.wav");
             waveOutDevice.Init(audioFileReader);
             isAudioInterfaceDisposed = false;
         }
@@ -54,5 +54,21 @@ namespace WifiPlayerServer.Player
                 disposeAudioInterface();
             }
         }
+
+        public void Forward()
+        {
+            audioFileReader.Skip(5);
+        }
+
+        public void Reverse()
+        {
+            audioFileReader.Skip(-5);
+        }
+
+        public int getFullSongTimeInSeconds()
+        {
+            return audioFileReader.TotalTime.Minutes * 60 + audioFileReader.TotalTime.Seconds;
+        }
+
     }
 }
