@@ -28,39 +28,74 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start"
-        android:id="@+id/startButton"
-        android:layout_gravity="center_horizontal" />
+        android:orientation="horizontal">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pause"
-        android:id="@+id/pauseButton"
-        android:layout_gravity="center_horizontal" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:id="@+id/previousButton"
+            android:layout_gravity="center_horizontal"
+            android:foreground="@android:drawable/ic_media_previous" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Stop"
-        android:id="@+id/stopButton"
-        android:layout_gravity="center_horizontal" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:id="@+id/reverseButton"
+            android:layout_gravity="center_horizontal"
+            android:foreground="@android:drawable/ic_media_rew" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Forward"
-        android:id="@+id/forwardButton"
-        android:layout_gravity="center_horizontal" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:id="@+id/startButton"
+            android:layout_gravity="center_horizontal"
+            android:foreground="@android:drawable/ic_media_play" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Reverse"
-        android:id="@+id/reverseButton"
-        android:layout_gravity="center_horizontal" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:id="@+id/pauseButton"
+            android:layout_gravity="center_horizontal"
+            android:foreground="@android:drawable/ic_media_pause" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:id="@+id/stopButton"
+            android:layout_gravity="center_horizontal"
+            android:foreground="@android:drawable/ic_media_pause" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:id="@+id/forwardButton"
+            android:layout_gravity="center_horizontal"
+            android:foreground="@android:drawable/ic_media_ff" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:id="@+id/nextButton"
+            android:layout_gravity="center_horizontal"
+            android:foreground="@android:drawable/ic_media_next" />
+
+    </LinearLayout>
+
+
+
+
+
+
+
 
 </LinearLayout>

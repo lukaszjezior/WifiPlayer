@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView textResponse;
     EditText editTextAddress, editTextPort;
-    Button startButton, pauseButton, stopButton, forwardButton, reverseButton;
+    Button startButton, pauseButton, stopButton, forwardButton, reverseButton, previousButton, nextButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,18 +29,25 @@ public class MainActivity extends AppCompatActivity {
 
         editTextAddress = (EditText) findViewById(R.id.address);
         editTextPort = (EditText) findViewById(R.id.port);
+        textResponse = (TextView) findViewById(R.id.response);
+
         startButton = (Button) findViewById(R.id.startButton);
         pauseButton = (Button) findViewById(R.id.pauseButton);
         stopButton = (Button) findViewById(R.id.stopButton);
         forwardButton = (Button) findViewById(R.id.forwardButton);
         reverseButton = (Button) findViewById(R.id.reverseButton);
-        textResponse = (TextView) findViewById(R.id.response);
+        previousButton = (Button) findViewById(R.id.previousButton);
+        nextButton = (Button) findViewById(R.id.nextButton);
+
 
         startButton.setOnClickListener(startButtonOnClickListener);
         pauseButton.setOnClickListener(pauseButtonOnClickListener);
         stopButton.setOnClickListener(stopButtonOnClickListener);
         forwardButton.setOnClickListener(forwardButtonOnClickListener);
         reverseButton.setOnClickListener(reverseButtonOnClickListener);
+        previousButton.setOnClickListener(previousButtonOnClickListener);
+        nextButton.setOnClickListener(nextButtonOnClickListener);
+
     }
 
     OnClickListener startButtonOnClickListener = new OnClickListener() {
@@ -80,6 +87,22 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View arg0) {
             sendMessage("REVERSE");
+        }
+    };
+
+    OnClickListener previousButtonOnClickListener = new OnClickListener() {
+
+        @Override
+        public void onClick(View arg0) {
+            sendMessage("PREVIOUS");
+        }
+    };
+
+    OnClickListener nextButtonOnClickListener = new OnClickListener() {
+
+        @Override
+        public void onClick(View arg0) {
+            sendMessage("NEXT");
         }
     };
 
