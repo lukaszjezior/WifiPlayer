@@ -5,22 +5,29 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView textResponse;
-    EditText editTextAddress, editTextPort;
-    Button startButton, pauseButton, stopButton, forwardButton, reverseButton, previousButton, nextButton;
+    private TextView textResponse;
+    private EditText editTextAddress, editTextPort;
+    private Button startButton, pauseButton, stopButton, forwardButton, reverseButton, previousButton, nextButton;
+    private ListView audioFilesListView;
+    private ArrayAdapter<String> titlesAdapter;
+    private String cars[] = {"Mercedes", "Fiat", "Ferrari", "Aston Martin", "Lamborghini", "Skoda", "Volkswagen", "Audi", "Citroen"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         editTextAddress = (EditText) findViewById(R.id.address);
         editTextPort = (EditText) findViewById(R.id.port);
         textResponse = (TextView) findViewById(R.id.response);
-
         startButton = (Button) findViewById(R.id.startButton);
         pauseButton = (Button) findViewById(R.id.pauseButton);
         stopButton = (Button) findViewById(R.id.stopButton);
@@ -38,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         reverseButton = (Button) findViewById(R.id.reverseButton);
         previousButton = (Button) findViewById(R.id.previousButton);
         nextButton = (Button) findViewById(R.id.nextButton);
-
+        audioFilesListView = (ListView) findViewById(R.id.audioFilesListView);
 
         startButton.setOnClickListener(startButtonOnClickListener);
         pauseButton.setOnClickListener(pauseButtonOnClickListener);
@@ -48,6 +54,16 @@ public class MainActivity extends AppCompatActivity {
         previousButton.setOnClickListener(previousButtonOnClickListener);
         nextButton.setOnClickListener(nextButtonOnClickListener);
 
+        initializeAudioFilesListView();
+    }
+
+    private void initializeAudioFilesListView() {
+        ArrayList<String> carL = new ArrayList<String>();
+        carL.addAll( Arrays.asList(cars) );
+
+        titlesAdapter = new ArrayAdapter<String>(this, R.layout.list_element, carL);
+
+        audioFilesListView.setAdapter(titlesAdapter);
     }
 
     OnClickListener startButtonOnClickListener = new OnClickListener() {
