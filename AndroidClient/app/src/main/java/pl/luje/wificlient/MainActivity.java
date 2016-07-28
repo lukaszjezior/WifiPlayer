@@ -8,11 +8,15 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,11 +32,13 @@ public class MainActivity extends AppCompatActivity {
     private ListView audioFilesListView;
     private ArrayAdapter<String> titlesAdapter;
     private String cars[] = {"Mercedes", "Fiat", "Ferrari", "Aston Martin", "Lamborghini", "Skoda", "Volkswagen", "Audi", "Citroen"};
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        context = this;
 
         editTextAddress = (EditText) findViewById(R.id.address);
         editTextPort = (EditText) findViewById(R.id.port);
@@ -55,15 +61,37 @@ public class MainActivity extends AppCompatActivity {
         nextButton.setOnClickListener(nextButtonOnClickListener);
 
         initializeAudioFilesListView();
+
+        /*audioFilesListView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(context, "Selected item number " + position, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Toast.makeText(context, "Nothing selected", Toast.LENGTH_SHORT).show();
+            }
+
+        });*/
+
+        audioFilesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(context, "Clicked item number " + position, Toast.LENGTH_SHORT).show();
+                audioFilesListView.setSelection(position);
+            }
+        });
     }
 
     private void initializeAudioFilesListView() {
         ArrayList<String> carL = new ArrayList<String>();
-        carL.addAll( Arrays.asList(cars) );
+        carL.addAll(Arrays.asList(cars));
 
-        titlesAdapter = new ArrayAdapter<String>(this, R.layout.list_element, carL);
-
-        audioFilesListView.setAdapter(titlesAdapter);
+        //ToDo: Ogarnąć jak powinien działać poprawnie customowy selector.
+        //audioFilesListView.setSelector(R.drawable.audio_files_list_view_selector);
+        audioFilesListView.setAdapter(new AudioFilesListViewAdapter(context, carL));
     }
 
     OnClickListener startButtonOnClickListener = new OnClickListener() {
@@ -156,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
                         socket.getOutputStream());
                 dataInputStream = new DataInputStream(socket.getInputStream());
 
-                if(msgToServer != null){
+                if (msgToServer != null) {
                     dataOutputStream.writeUTF(msgToServer + "<EOF>");
                     //dataOutputStream.writeUTF(msgToServer);
                 }
